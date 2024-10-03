@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion-Bootcamp-Nivelamento-Typscript</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <h1>Orion Bootcamp Exercício de Nivelamento TypScript</h1>
+
+    <label for="palavraId">Digite uma palavra:</label>
+    <input type="text" id="palavraInput" placeholder="Digite uma palavra: " />
+
+    <button class="btn-vogais" onclick="contarVgsParametro()">Quantidade de vogais</button>
+
+    <label for="userId">Digite o ID do usuário:</label>
+    <input type="number" id="userId" placeholder="ID do usuário" />
+
+    <button class="btn-buscar" onclick="getBioById()">Buscar Bio</button>
+    <button class="btn-buscar" onclick="getNameById()">Buscar Nome</button>
+    <button class="btn-deletar" onclick="deleteItemById()">Deletar Usuário</button>
+    <button class="btn-atualizar" onclick="updateNameById()">Atualizar Nome/Bio</button>
+
+    <h2>Lista de Usuários:</h2>
+    <ul id="userList">
+        <li id="user1">ID: 1, Nome: Ada Lovelace, Bio: Ada Lovelace, foi uma matemática e escritora inglesa reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina.</li>
+        <li id="user2">ID: 2, Nome: Alan Turing, Bio: Alan Turing foi um matemático, cientista da computação, lógico, criptoanalista, filósofo e biólogo teórico britânico, amplamente considerado o pai da ciência da computação teórica e da inteligência artificial.</li>
+        <li id="user3">ID: 3, Nome: Nikola Tesla, Bio: Nikola Tesla foi um inventor, engenheiro eletrotécnico e engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de fornecimento de eletricidade em corrente alternada.</li>
+        <li id="user4">ID: 4, Nome: Nicolau Copérnico, Bio: Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar.</li>
+    </ul>
+
+    <script src="./exercicio_nivelamento_3.js"></script>
+</body>
+
+</html>
