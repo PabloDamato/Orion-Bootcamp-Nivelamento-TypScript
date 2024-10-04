@@ -1,4 +1,3 @@
-//corrigido, implementado a interface
 interface lista {
   id: number;
   name: string;
@@ -28,14 +27,19 @@ let lista: lista[] = [
   },
 ];
 
-// a)Crie uma função que retorne a bio do id passado, versões normal, funcional e imperativo
-
-//corrigido atribuido o tipo de retorno da função
-//Samuel, segundo a minha pesquisa, na documentação diz que o método find() retorna undefined caso o valor informado não satisfaça a condição, que, nesse caso seria lista.id igual ao id passado via parâmetro da função. Caso eu estiver errado por favor me corrija. Segue o link que usei como referência: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find Eu testei inserindo o valor -1 e ele cai no else exibindo o console.log("getBioById => Nenhuma bio foi encontrada para o Id informado.");
-function getBioById(id: number): void {
-  const index = lista.find((lista) => lista.id === id);
+function getBioById(
+  id: number,
+  lista: { id: number; name: string; bio: string }[]
+): void {
+  const index:
+    | {
+        id: number;
+        name: string;
+        bio: string;
+      }
+    | undefined = lista.find((person) => person.id === id);
   if (index) {
-    console.log("getBioById => " + index.bio);
+    console.log(`getBioById => ${index.bio}`);
   } else {
     console.log(
       "getBioById => Nenhuma bio foi encontrada para o Id informado."
@@ -43,28 +47,26 @@ function getBioById(id: number): void {
   }
 }
 
-//corrigido retirado o else desnecessário e atribuido e tipo de retorno da função
 function getBioByIdFunctional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const bio = lista.find((person) => person.id === id)?.bio;
+  const bio: string | undefined = lista.find((person) => person.id === id)?.bio;
   if (bio) {
-    return console.log("getBioByIdFunctional => " + bio);
+    return console.log(`getBioByIdFunctional => ${bio}`);
   }
   return console.log(
     "getBioByIdFunctional => Nenhuma bio foi encontrada para o Id informado."
   );
 }
 
-//corrigido atribuido o tipo de retorno da função
 function getBioByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
   for (const person of lista) {
     if (person.id === id) {
-      return console.log("getBioByIdImperativo => " + person.bio);
+      return console.log(`getBioByIdImperativo => ${person.bio}`);
     }
   }
   return console.log(
@@ -72,13 +74,19 @@ function getBioByIdImperativo(
   );
 }
 
-// b)Crie uma função que retorne o name do id passado
-
-//corrigido atribuido o tipo de retorno da função
-function getNameById(id: number): void {
-  const index = lista.find((lista) => lista.id === id);
+function getNameById(
+  id: number,
+  lista: { id: number; name: string; bio: string }[]
+): void {
+  const index:
+    | {
+        id: number;
+        name: string;
+        bio: string;
+      }
+    | undefined = lista.find((person) => person.id === id);
   if (index) {
-    console.log("getNameById => " + index.name);
+    console.log(`getNameById => ${index.name}`);
   } else {
     console.log(
       "getNameById => Nenhum nome foi encontrado para o Id informado."
@@ -86,14 +94,15 @@ function getNameById(id: number): void {
   }
 }
 
-//corrigido atribuido o tipo de retorno da função
 function getNameByIdFuncional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const bio = lista.find((person) => person.id === id)?.name;
+  const bio: string | undefined = lista.find(
+    (person) => person.id === id
+  )?.name;
   if (bio) {
-    return console.log("getNameByIdFunctional => " + bio);
+    return console.log(`getNameByIdFunctional => ${bio}`);
   } else {
     return console.log(
       "getNameByIdFunctional => Nenhum nome foi encontrado para o Id informado."
@@ -101,14 +110,13 @@ function getNameByIdFuncional(
   }
 }
 
-//corrigido atribuido o tipo de retorno da função
 function getNameByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
   for (const person of lista) {
     if (person.id === id) {
-      return console.log("getNameByIdImperativo => " + person.name);
+      return console.log(`getNameByIdImperativo =>  ${person.name}`);
     }
   }
   return console.log(
@@ -116,16 +124,16 @@ function getNameByIdImperativo(
   );
 }
 
-// c) Crie uma função que apague um item da lista a partir de um id passado
-
-//corrigido atribuido o tipo de retorno da função
-function deleteItemById(id: number): void {
-  const index = lista.findIndex((lista) => lista.id === id);
+function deleteItemById(
+  id: number,
+  lista: { id: number; name: string; bio: string }[]
+): void {
+  const index: number = lista.findIndex((person) => person.id === id);
   if (index !== -1) {
     console.log(
-      "deleteItemById => O item correspondente ao Id: " +
-        (index + 1) +
-        " foi deletado com sucesso!"
+      `deleteItemById => O item correspondente ao Id: ${
+        index + 1
+      } foi deletado com sucesso!`
     );
     lista.splice(index, 1);
     console.log(lista);
@@ -136,19 +144,16 @@ function deleteItemById(id: number): void {
   }
 }
 
-//corrigido atribuido o tipo de retorno da função
 function deleteItemByIdFuncional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const listaOriginal = lista.length;
-  const listaNova = lista.filter((item) => item.id !== id);
+  const listaOriginal: number = lista.length;
+  const listaNova: lista[] = lista.filter((item) => item.id !== id);
 
   if (listaNova.length !== listaOriginal) {
     console.log(
-      "deleteItemByIdFuncional => O item correspondente ao Id: " +
-        id +
-        " foi deletado com sucesso!"
+      `deleteItemByIdFuncional => O item correspondente ao Id: ${id} foi deletado com sucesso!`
     );
     return console.log(listaNova);
   } else {
@@ -158,21 +163,17 @@ function deleteItemByIdFuncional(
   }
 }
 
-//corrigido atribuido o tipo de retorno da função e alterado o nome da variavel controladora do for de i para index.
 function deleteItemByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  for (let index = 0; index < lista.length; index++) {
+  for (let index: number = 0; index < lista.length; index++) {
     if (lista[index].id === id) {
       console.log(
-        "deleteItemByIdImperativo => O item correspondente ao Id: " +
-          lista[index].id +
-          " foi deletado com sucesso!"
+        `deleteItemByIdImperativo => O item correspondente ao Id: ${lista[index].id} foi deletado com sucesso!`
       );
       lista.splice(index, 1);
-      console.log(lista);
-      return;
+      return console.log(lista);
     }
   }
   console.log(
@@ -180,17 +181,23 @@ function deleteItemByIdImperativo(
   );
 }
 
-// d)Crie uma função que altere a bio ou o name a partir de um id passado
-
-//corrigido atribuido o tipo de retorno da função
-function updateNameById(id: number): void {
-  const index = lista.find((lista) => lista.id === id);
+function updateNameById(
+  id: number,
+  lista: { id: number; name: string; bio: string }[]
+): void {
+  const index:
+    | {
+        id: number;
+        name: string;
+        bio: string;
+      }
+    | undefined = lista.find((person) => person.id === id);
   if (index) {
     console.log(
-      "updateNameById => O nome: " +
-        index.name +
-        " será alterado para: " +
-        (index.name = "Novo Nome via função updateNameById")
+      `updateNameById => O nome: ${
+        index.name
+      } será alterado para: ${(index.name =
+        "Novo Nome via função updateNameById")}`
     );
     console.log(lista);
   } else {
@@ -200,40 +207,42 @@ function updateNameById(id: number): void {
   }
 }
 
-//corrigido atribuido o tipo de retorno da função
 function updateNameByIdFuncional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  let person = lista.find((person) => person.id === id);
-  if (person) {
+  const index:
+    | {
+        id: number;
+        name: string;
+        bio: string;
+      }
+    | undefined = lista.find((person) => person.id === id);
+  if (index) {
     console.log(
-      "updateNameByIdFuncional => O nome: " +
-        person.name +
-        " será alterado para: " +
-        (person.name = "Novo nome via função updateNameByIdFuncional")
+      `updateNameByIdFuncional => O nome: ${
+        index.name
+      } será alterado para: ${(index.name =
+        "Novo nome via função updateNameByIdFuncional")}`
     );
-    console.log(lista);
-    return;
-  } else {
-    return console.log(
-      "updateNameByIdFuncional => Nenhuma bio foi encontrada para o Id informado."
-    );
+    return console.log(lista);
   }
+  return console.log(
+    "updateNameByIdFuncional => Nenhuma bio foi encontrada para o Id informado."
+  );
 }
 
-//corrigido atribuido o tipo de retorno da função
 function updateNameByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  for (let index = 0; index < lista.length; index++) {
+  for (let index: number = 0; index < lista.length; index++) {
     if (lista[index].id === id) {
       console.log(
-        "updateNameByIdImperativo => O nome: " +
-          lista[index].name +
-          " será alterado para: " +
-          (lista[index].name = "Novo Nome via função updateNameByIdImperativo")
+        `updateNameByIdImperativo => O nome: ${
+          lista[index].name
+        } será alterado para: ${(lista[index].name =
+          "Novo Nome via função updateNameByIdImperativo")}`
       );
       console.log(lista);
       return;
@@ -244,15 +253,15 @@ function updateNameByIdImperativo(
   );
 }
 
-getBioById(0);
+getBioById(0, lista);
 getBioByIdFunctional(0, lista);
 getBioByIdImperativo(0, lista);
-getNameById(0);
+getNameById(0, lista);
 getNameByIdFuncional(0, lista);
 getNameByIdImperativo(0, lista);
-deleteItemById(0);
+deleteItemById(0, lista);
 deleteItemByIdFuncional(0, lista);
 deleteItemByIdImperativo(0, lista);
-updateNameById(0);
+updateNameById(0, lista);
 updateNameByIdFuncional(0, lista);
 updateNameByIdImperativo(0, lista);
