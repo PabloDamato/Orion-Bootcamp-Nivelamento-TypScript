@@ -1,10 +1,20 @@
-interface lista {
+/**
+ * @interface IPessoa
+ * Representa uma pessoa com informações básicas.
+ * id: Identificador único da pessoa.
+ * name: Nome da pessoa.
+ * bio: Breve biografia da pessoa.
+ */
+interface IPessoa {
   id: number;
   name: string;
   bio: string;
 }
 
-let lista: lista[] = [
+/**
+ * Lista de pessoas com informações básicas.
+ */
+let lista: IPessoa[] = [
   {
     id: 1,
     name: "Ada Lovelace",
@@ -27,19 +37,19 @@ let lista: lista[] = [
   },
 ];
 
+/**
+ * Função que busca a biografia de uma pessoa por ID e a exibe no console.
+ * @param id - O identificador da pessoa.
+ * @param lista - A lista de pessoas para buscar a biografia.
+ * @returns - Void - A função não retorna valor, apenas imprime no console a biografia.
+ */
 function getBioById(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const index:
-    | {
-        id: number;
-        name: string;
-        bio: string;
-      }
-    | undefined = lista.find((person) => person.id === id);
-  if (index) {
-    console.log(`getBioById => ${index.bio}`);
+  const Id: IPessoa | undefined = lista.find((person) => person.id === id);
+  if (Id) {
+    console.log(`getBioById => ${Id.bio}`);
   } else {
     console.log(
       "getBioById => Nenhuma bio foi encontrada para o Id informado."
@@ -47,6 +57,12 @@ function getBioById(
   }
 }
 
+/**
+ * Função funcional que busca a biografia de uma pessoa por ID e a exibe no console.
+ * @param id - O identificador da pessoa.
+ * @param lista - A lista de pessoas para buscar a biografia.
+ * @returns - Void - A função não retorna valor, apenas imprime no console a biografia.
+ */
 function getBioByIdFunctional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -60,6 +76,12 @@ function getBioByIdFunctional(
   );
 }
 
+/**
+ * Função imperativa que busca a biografia de uma pessoa por ID e a exibe no console.
+ * @param id - O identificador da pessoa.
+ * @param lista - A lista de pessoas para buscar a biografia.
+ * @returns - Void - A função não retorna valor, apenas imprime no console a biografia.
+ */
 function getBioByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -74,17 +96,17 @@ function getBioByIdImperativo(
   );
 }
 
+/**
+ * Função que busca o nome de uma pessoa por ID e o exibe no console.
+ * @param id - O identificador da pessoa.
+ * @param lista - A lista de pessoas para buscar o nome.
+ * @returns - Void - A função não retorna valor, apenas imprime no console o nome da pessoa.
+ */
 function getNameById(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const index:
-    | {
-        id: number;
-        name: string;
-        bio: string;
-      }
-    | undefined = lista.find((person) => person.id === id);
+  const index: IPessoa | undefined = lista.find((person) => person.id === id);
   if (index) {
     console.log(`getNameById => ${index.name}`);
   } else {
@@ -94,6 +116,12 @@ function getNameById(
   }
 }
 
+/**
+ * Função funcional que busca o nome de uma pessoa por ID e o exibe no console.
+ * @param id - O identificador da pessoa.
+ * @param lista - A lista de pessoas para buscar o nome.
+ * @returns - Void - A função não retorna valor, apenas imprime no console o nome da pessoa.
+ */
 function getNameByIdFuncional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -110,6 +138,12 @@ function getNameByIdFuncional(
   }
 }
 
+/**
+ * Função imperativa que busca o nome de uma pessoa por ID e o exibe no console.
+ * @param id - O identificador da pessoa.
+ * @param lista - A lista de pessoas para buscar o nome.
+ * @returns - Void - A função não retorna valor, apenas imprime no console o nome da pessoa.
+ */
 function getNameByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -124,6 +158,12 @@ function getNameByIdImperativo(
   );
 }
 
+/**
+ * Função que deleta uma pessoa da lista por ID e exibe a lista atualizada.
+ * @param id - O identificador da pessoa a ser deletada.
+ * @param lista - A lista de pessoas para buscar o item a ser deletado.
+ * @returns - Void - A função não retorna valor, apenas imprime no console qual item da lista foi deletado.
+ */
 function deleteItemById(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -144,12 +184,18 @@ function deleteItemById(
   }
 }
 
+/**
+ * Função funcional que deleta uma pessoa da lista por ID e exibe a lista atualizada.
+ * @param id - O identificador da pessoa a ser deletada.
+ * @param lista - A lista de pessoas para buscar o item a ser deletado.
+ * @returns - Void - A função não retorna valor, apenas imprime no console qual item da lista foi deletado.
+ */
 function deleteItemByIdFuncional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
   const listaOriginal: number = lista.length;
-  const listaNova: lista[] = lista.filter((item) => item.id !== id);
+  const listaNova: IPessoa[] = lista.filter((item) => item.id !== id);
 
   if (listaNova.length !== listaOriginal) {
     console.log(
@@ -163,6 +209,12 @@ function deleteItemByIdFuncional(
   }
 }
 
+/**
+ * Função imperativa que deleta uma pessoa da lista por ID e exibe a lista atualizada.
+ * @param id - O identificador da pessoa a ser deletada.
+ * @param lista - A lista de pessoas para buscar o item a ser deletado.
+ * @returns - Void - A função não retorna valor, apenas imprime no console qual item da lista foi deletado.
+ */
 function deleteItemByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -181,17 +233,17 @@ function deleteItemByIdImperativo(
   );
 }
 
+/**
+ * Função que atualiza o nome de uma pessoa da lista por ID e exibe a lista atualizada.
+ * @param id - O identificador da pessoa a ser atualizada.
+ * @param lista - A lista de pessoas a ser atualizada.
+ * @returns - Void - A função não retorna valor, apenas imprime no console qual nome da lista foi atualizado.
+ */
 function updateNameById(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const index:
-    | {
-        id: number;
-        name: string;
-        bio: string;
-      }
-    | undefined = lista.find((person) => person.id === id);
+  const index: IPessoa | undefined = lista.find((person) => person.id === id);
   if (index) {
     console.log(
       `updateNameById => O nome: ${
@@ -207,17 +259,17 @@ function updateNameById(
   }
 }
 
+/**
+ * Função funcional que atualiza o nome de uma pessoa da lista por ID e exibe a lista atualizada.
+ * @param id - O identificador da pessoa a ser atualizada.
+ * @param lista - A lista de pessoas a ser atualizada.
+ * @returns - Void - A função não retorna valor, apenas imprime no console qual nome da lista foi atualizado.
+ */
 function updateNameByIdFuncional(
   id: number,
   lista: { id: number; name: string; bio: string }[]
 ): void {
-  const index:
-    | {
-        id: number;
-        name: string;
-        bio: string;
-      }
-    | undefined = lista.find((person) => person.id === id);
+  const index: IPessoa | undefined = lista.find((person) => person.id === id);
   if (index) {
     console.log(
       `updateNameByIdFuncional => O nome: ${
@@ -232,6 +284,12 @@ function updateNameByIdFuncional(
   );
 }
 
+/**
+ * Função imperativa que atualiza o nome de uma pessoa da lista por ID e exibe a lista atualizada.
+ * @param id - O identificador da pessoa a ser atualizada.
+ * @param lista - A lista de pessoas a ser atualizada.
+ * @returns - Void - A função não retorna valor, apenas imprime no console qual nome da lista foi atualizado.
+ */
 function updateNameByIdImperativo(
   id: number,
   lista: { id: number; name: string; bio: string }[]
@@ -253,15 +311,75 @@ function updateNameByIdImperativo(
   );
 }
 
+/**
+ * @description Exibe a biografia da pessoa com o ID 0.
+ * @example
+ * getBioById(0, lista);
+ */
 getBioById(0, lista);
+/**
+ * @description Exibe a biografia da pessoa com o ID 0 usando a função no estilo funcional.
+ * @example
+ * getBioByIdFunctional(0, lista);
+ */
 getBioByIdFunctional(0, lista);
+/**
+ * @description Exibe a biografia da pessoa com o ID 0 usando a função no estilo imperativo.
+ * @example
+ * getBioByIdImperativo(0, lista);
+ */
 getBioByIdImperativo(0, lista);
+/**
+ * @description Exibe o nome da pessoa com o ID 0.
+ * @example
+ * getNameById(0, lista);
+ */
 getNameById(0, lista);
+/**
+ * @description Exibe o nome da pessoa com o ID 0 usando a função no estilo funcional.
+ * @example
+ * getNameByIdFuncional(0, lista);
+ */
 getNameByIdFuncional(0, lista);
+/**
+ * @description Exibe o nome da pessoa com o ID 0 usando a função no estilo imperativo.
+ * @example
+ * getNameByIdImperativo(0, lista);
+ */
 getNameByIdImperativo(0, lista);
+/**
+ * @description Deleta a pessoa com o ID 0 da lista.
+ * @example
+ * deleteItemById(0, lista);
+ */
 deleteItemById(0, lista);
+/**
+ * @description Deleta a pessoa com o ID 0 da lista usando a função no estilo funcional.
+ * @example
+ * deleteItemByIdFuncional(0, lista);
+ */
 deleteItemByIdFuncional(0, lista);
+/**
+ * @description Deleta a pessoa com o ID 0 da lista usando a função no estilo imperativo.
+ * @example
+ * deleteItemByIdImperativo(0, lista);
+ */
 deleteItemByIdImperativo(0, lista);
+/**
+ * @description Atualiza o nome da pessoa com o ID 0.
+ * @example
+ * updateNameById(0, lista);
+ */
 updateNameById(0, lista);
+/**
+ * @description Atualiza o nome da pessoa com o ID 0 usando a função no estilo funcional.
+ * @example
+ * updateNameByIdFuncional(0, lista);
+ */
 updateNameByIdFuncional(0, lista);
+/**
+ * @description Atualiza o nome da pessoa com o ID 0 usando a função no estilo imperativo.
+ * @example
+ * updateNameByIdImperativo(0, lista);
+ */
 updateNameByIdImperativo(0, lista);
